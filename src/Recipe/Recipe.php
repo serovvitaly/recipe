@@ -39,7 +39,7 @@ class Recipe implements RecipeInterface
         $this->ingredientsCollection = $ingredientsCollection;
     }
 
-    public function name(): string
+    public function getName(): string
     {
         return $this->name;
     }

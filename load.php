@@ -2,6 +2,11 @@
 
 $siteMapUrl = 'https://kedem.ru/sitemap.xml';
 
+$siteMaps = [
+    'wowfood.club' => 'https://wowfood.club/sitemap.xml',
+    'kedem.ru' => 'https://kedem.ru/sitemap.xml',
+];
+
 $siteMap = simplexml_load_file($siteMapUrl);
 
 $counter = 1;

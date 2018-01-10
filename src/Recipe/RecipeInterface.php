@@ -5,10 +5,13 @@ namespace Src\Recipe;
 
 interface RecipeInterface
 {
-    public function name(): string;
+    public function getName(): string;
 
     public function ingredientsCollection(): IngredientsCollectionInterface;
 
+    /**
+     * @return IngredientInterface[]
+     */
     public function ingredients(): array;
 
     public function setImage(string $url);

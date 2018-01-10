@@ -8,6 +8,9 @@ $files = scandir('html');
 
 $parser = new \Src\Parsers\KedemRuParser;
 
+$mysqlStorage = new \Src\Storages\MysqlStorage();
+$recipesService = new \Src\RecipesService();
+
 foreach ($files as $fileName) {
     $content = file_get_contents('html/' . $fileName);
     $crawler = new Crawler($content);
@@ -17,5 +20,5 @@ foreach ($files as $fileName) {
         continue;
     }
 
-    echo $recipe->name(), PHP_EOL, $recipe->ingredientsCollection()->count(), PHP_EOL, $recipe->getImage(), PHP_EOL;
+    $recipesService->storeRecipe($recipe, $mysqlStorage);
 }
