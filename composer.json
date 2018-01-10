@@ -1,0 +1,11 @@
+{
+    "require": {
+        "symfony/dom-crawler": "^4.0",
+        "symfony/css-selector": "^4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Src\\": "src/"
+        }
+    }
+}
