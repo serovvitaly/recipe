@@ -7,19 +7,21 @@ class Recipe implements RecipeInterface
 {
     protected $name;
     protected $ingredientsCollection;
+    protected $image;
     protected $recipeInstructions;
 
     /**
      * Recipe constructor.
      * @param string $name
      * @param IngredientsCollectionInterface $ingredientsCollection
+     * @param string $image
      * @param string $recipeInstructions
      * @throws \Exception
      */
     public function __construct(
         string $name,
         IngredientsCollectionInterface $ingredientsCollection,
-        string $recipeInstructions = ''
+        string $image = ''
     )
     {
         /* Обязательные поля */
@@ -33,12 +35,7 @@ class Recipe implements RecipeInterface
             throw new \Exception('Recipe ingredients list is empty');
         }
 
-        /* Необязательные поля */
-        $recipeInstructions = trim($recipeInstructions);
-
-
         $this->name = $name;
-        $this->recipeInstructions = empty($recipeInstructions) ? null : $recipeInstructions;
         $this->ingredientsCollection = $ingredientsCollection;
     }
 
@@ -55,6 +52,28 @@ class Recipe implements RecipeInterface
     public function ingredients(): array
     {
         return $this->ingredientsCollection->ingredients();
+    }
+
+    public function setImage(string $url)
+    {
+        $this->image = trim($url);
+        return $this;
+    }
+
+    public function getImage(): string
+    {
+        return $this->image;
+    }
+
+    public function setRecipeInstructions(string $recipeInstructions)
+    {
+        $this->recipeInstructions = trim($recipeInstructions);
+        return $this;
+    }
+
+    public function getRecipeInstructions(): string
+    {
+        return $this->recipeInstructions;
     }
 
 }

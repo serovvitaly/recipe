@@ -21,20 +21,24 @@ class KedemRuParser implements \Src\Parsers\ParserInterfaces
         $ingredients = $crawler->filterXPath('//div[@itemprop="ingredients"]');
         $ingredientsCollection = new IngredientsCollection();
         $ingredients->each(function (Crawler $crawler) use ($ingredientsCollection) {
-            $ingredientsCollection->append(new Ingredient());
+            $ingredientsCollection->append(new Ingredient($crawler->text()));
         });
+
+        $recipe = new Recipe(
+            $name->text(),
+            $ingredientsCollection
+        );
 
         $recipeInstructions = $crawler->filterXPath('//div[@itemprop="recipeInstructions"]');
         if ($recipeInstructions->count()) {
-            $recipeInstructions = $recipeInstructions->html();
-        } else {
-            $recipeInstructions = '';
+            $recipe->setRecipeInstructions($recipeInstructions->first()->html());
         }
 
-        return new Recipe(
-            $name->text(),
-            $ingredientsCollection,
-            $recipeInstructions
-        );
+        $image = $crawler->filterXPath('//img[@itemprop="image"]');
+        if ($image->count()) {
+            $recipe->setImage($image->first()->attr('src'));
+        }
+
+        return $recipe;
     }
 }

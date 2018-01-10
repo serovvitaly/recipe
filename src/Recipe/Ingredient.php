@@ -5,8 +5,15 @@ namespace Src\Recipe;
 
 class Ingredient implements IngredientInterface
 {
-    public function __construct()
+    protected $text;
+
+    public function __construct(string $text)
     {
-        //
+        $this->text = trim($text);
+    }
+
+    public function getText(): string
+    {
+        return $this->text;
     }
 }

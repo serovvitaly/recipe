@@ -17,5 +17,5 @@ foreach ($files as $fileName) {
         continue;
     }
 
-    echo $recipe->name(), PHP_EOL, $recipe->ingredientsCollection()->count(), PHP_EOL;
+    echo $recipe->name(), PHP_EOL, $recipe->ingredientsCollection()->count(), PHP_EOL, $recipe->getImage(), PHP_EOL;
 }
